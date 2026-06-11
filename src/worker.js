@@ -55,7 +55,13 @@ async function handleFeedback(request, env) {
   // The email is optional; only treat it as a reply address if it looks valid.
   const emailValid = email !== '' && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
-  if (!env.RESEND_API_KEY) {
+  // RESEND_API_KEY is a Secrets Store binding (resolved via .get()), but tolerate
+  // a plain-string secret too so the binding switch never leaves a broken window.
+  const apiKey =
+    env.RESEND_API_KEY && typeof env.RESEND_API_KEY.get === 'function'
+      ? await env.RESEND_API_KEY.get()
+      : env.RESEND_API_KEY;
+  if (!apiKey) {
     return json({ ok: false, error: 'Feedback is not configured yet.' }, 500);
   }
 
@@ -84,7 +90,7 @@ async function handleFeedback(request, env) {
     res = await fetch('https://api.resend.com/emails', {
       method: 'POST',
       headers: {
-        Authorization: `Bearer ${env.RESEND_API_KEY}`,
+        Authorization: `Bearer ${apiKey}`,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(payload),
