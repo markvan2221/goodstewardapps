@@ -21,6 +21,7 @@ if (form) {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           name: data.name,
+          email: data.email || '',
           rating: data.rating,
           comment: data.comment,
           company: data.company || '', // honeypot — leave blank

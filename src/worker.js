@@ -37,6 +37,7 @@ async function handleFeedback(request, env) {
   }
 
   const name = String(data.name ?? '').trim();
+  const email = String(data.email ?? '').trim(); // optional
   const comment = String(data.comment ?? '').trim();
   const rating = Number.parseInt(data.rating, 10);
   const honeypot = String(data.company ?? '').trim(); // hidden field; only bots fill it
@@ -47,9 +48,12 @@ async function handleFeedback(request, env) {
   if (!name || !comment || !(rating >= 1 && rating <= 5)) {
     return json({ ok: false, error: 'Please add your name, rating and feedback.' }, 422);
   }
-  if (name.length > 100 || comment.length > 5000) {
+  if (name.length > 100 || email.length > 200 || comment.length > 5000) {
     return json({ ok: false, error: 'That submission is a little too long.' }, 422);
   }
+
+  // The email is optional; only treat it as a reply address if it looks valid.
+  const emailValid = email !== '' && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 
   if (!env.RESEND_API_KEY) {
     return json({ ok: false, error: 'Feedback is not configured yet.' }, 500);
@@ -59,11 +63,21 @@ async function handleFeedback(request, env) {
     'ScripturePicture feedback',
     '',
     `Name: ${name}`,
+    `Email: ${email || 'Not provided'}`,
     `Rating: ${rating} out of 5`,
     '',
     'Feedback / suggestion:',
     comment,
   ].join('\n');
+
+  const payload = {
+    from: FEEDBACK_FROM,
+    to: [FEEDBACK_TO],
+    subject: `ScripturePicture feedback - ${rating}/5`,
+    text,
+  };
+  // If the visitor left a valid email, set it as reply-to so a reply reaches them.
+  if (emailValid) payload.reply_to = email;
 
   let res;
   try {
@@ -73,12 +87,7 @@ async function handleFeedback(request, env) {
         Authorization: `Bearer ${env.RESEND_API_KEY}`,
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({
-        from: FEEDBACK_FROM,
-        to: [FEEDBACK_TO],
-        subject: `ScripturePicture feedback - ${rating}/5`,
-        text,
-      }),
+      body: JSON.stringify(payload),
     });
   } catch {
     return json({ ok: false, error: 'Could not send right now.' }, 502);
