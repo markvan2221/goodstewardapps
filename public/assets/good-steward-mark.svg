@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" role="img" aria-labelledby="title desc">
+  <title id="title">Good Steward Apps mark</title>
+  <desc id="desc">A warm hand-drawn basket holding a sprouting leaf, shaped like an app icon.</desc>
+  <defs>
+    <linearGradient id="sun" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffe27a"/>
+      <stop offset="1" stop-color="#f28a1f"/>
+    </linearGradient>
+    <linearGradient id="leaf" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#84d35f"/>
+      <stop offset="1" stop-color="#1e8a48"/>
+    </linearGradient>
+  </defs>
+  <rect x="10" y="10" width="140" height="140" rx="32" fill="#fff7dd" stroke="#261b12" stroke-width="7"/>
+  <circle cx="116" cy="40" r="17" fill="url(#sun)" stroke="#261b12" stroke-width="5"/>
+  <path d="M42 101c-2-22 9-39 30-51" fill="none" stroke="#261b12" stroke-width="8" stroke-linecap="round"/>
+  <path d="M72 49c17 5 27 18 28 39-22 0-36-13-28-39Z" fill="url(#leaf)" stroke="#261b12" stroke-width="6" stroke-linejoin="round"/>
+  <path d="M48 84c-13 5-22 16-23 34h100c-1-18-10-29-23-34" fill="#f7bd49" stroke="#261b12" stroke-width="7" stroke-linejoin="round"/>
+  <path d="M32 103h86M38 120h74M55 86v48M78 83v51M101 87v47" fill="none" stroke="#7d4c18" stroke-width="4" stroke-linecap="round" opacity=".75"/>
+  <path d="M32 103c8-14 18-21 43-21s35 7 43 21" fill="none" stroke="#261b12" stroke-width="7" stroke-linecap="round"/>
+  <path d="M43 44c-10 8-17 19-20 33" fill="none" stroke="#261b12" stroke-width="5" stroke-linecap="round" opacity=".22"/>
+</svg>
