@@ -1,19 +1,8 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 220" role="img" aria-labelledby="title desc">
-  <title id="title">Good Steward Apps logo</title>
-  <desc id="desc">Good Steward Apps with a friendly hand-drawn steward basket and sprout.</desc>
-  <rect width="760" height="220" rx="36" fill="none"/>
-  <g transform="translate(20 30)">
-    <rect x="0" y="0" width="160" height="160" rx="34" fill="#fff7dd" stroke="#261b12" stroke-width="7"/>
-    <circle cx="116" cy="36" r="16" fill="#ffc84d" stroke="#261b12" stroke-width="5"/>
-    <path d="M42 101c-2-22 9-39 30-51" fill="none" stroke="#261b12" stroke-width="8" stroke-linecap="round"/>
-    <path d="M72 49c17 5 27 18 28 39-22 0-36-13-28-39Z" fill="#48b764" stroke="#261b12" stroke-width="6" stroke-linejoin="round"/>
-    <path d="M48 84c-13 5-22 16-23 34h100c-1-18-10-29-23-34" fill="#f7bd49" stroke="#261b12" stroke-width="7" stroke-linejoin="round"/>
-    <path d="M32 103h86M38 120h74M55 86v48M78 83v51M101 87v47" fill="none" stroke="#7d4c18" stroke-width="4" stroke-linecap="round" opacity=".75"/>
-    <path d="M32 103c8-14 18-21 43-21s35 7 43 21" fill="none" stroke="#261b12" stroke-width="7" stroke-linecap="round"/>
-  </g>
-  <g font-family="Trebuchet MS, Avenir Next, Segoe UI, sans-serif" fill="#261b12">
-    <text x="205" y="92" font-size="58" font-weight="900" letter-spacing="1">Good Steward</text>
-    <text x="207" y="148" font-size="42" font-weight="800" fill="#d46f18" letter-spacing="5">APPS</text>
-    <path d="M204 165c106 19 240 19 356 0" fill="none" stroke="#48b764" stroke-width="8" stroke-linecap="round" opacity=".65"/>
-  </g>
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="220" viewBox="0 0 800 220">
+<rect width="100%" height="100%" fill="white"/>
+<circle cx="95" cy="95" r="75" fill="#f6c34a" stroke="#5a3a12" stroke-width="6"/>
+<path d="M95 130 l-18 25 h36z" fill="#5aa832"/>
+<circle cx="95" cy="85" r="28" fill="#d9a15f"/>
+<text x="190" y="105" font-size="58" font-family="Georgia" font-weight="700" fill="#5a3a12">GOOD STEWARD</text>
+<text x="255" y="165" font-size="52" font-family="Arial" font-weight="700" fill="#6b9e23">APPS</text>
 </svg>
