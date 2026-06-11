@@ -6,7 +6,6 @@ function buildEmailBody(data) {
     'ScripturePicture feedback',
     '',
     `Name: ${data.name}`,
-    `Email: ${data.email || 'Not provided'}`,
     `Rating: ${data.rating} out of 5`,
     '',
     'Feedback / suggestion:',
@@ -25,11 +24,14 @@ if (form) {
     }
 
     const subject = `ScripturePicture feedback - ${data.rating}/5`;
-    const mailto = new URL('mailto:feedback@goodstewardapps.com');
-    mailto.searchParams.set('subject', subject);
-    mailto.searchParams.set('body', buildEmailBody(data));
+    // Build the mailto manually with encodeURIComponent so spaces become %20.
+    // URLSearchParams (searchParams.set) form-encodes spaces as "+", which mail
+    // clients then show literally as plus signs in the subject and body.
+    const mailto = 'mailto:feedback@goodstewardapps.com'
+      + '?subject=' + encodeURIComponent(subject)
+      + '&body=' + encodeURIComponent(buildEmailBody(data));
 
     statusEl.textContent = 'Opening your email app so you can send the feedback.';
-    window.location.href = mailto.toString();
+    window.location.href = mailto;
   });
 }
