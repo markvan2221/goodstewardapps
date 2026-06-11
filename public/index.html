@@ -3,65 +3,60 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Good Steward — Christian app studio</title>
-<meta name="description" content="Good Steward — a small Christian app studio.">
-<style>
-  :root { --bg:#1a1a2e; --card:#16213e; --accent:#7eb8f7; --muted:#a0b4c8; --border:#2a2a4e; }
-  * { box-sizing:border-box; }
-  body { margin:0; background:var(--bg); color:#e6ecf5; font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; line-height:1.6; }
-  a { color:var(--accent); }
-  .wrap { max-width:760px; margin:0 auto; padding:32px 20px 64px; }
-  header.site { display:flex; align-items:center; justify-content:space-between; gap:16px; padding:20px 0; border-bottom:1px solid var(--border); margin-bottom:8px; }
-  header.site .brand { font-size:20px; font-weight:800; color:#fff; text-decoration:none; letter-spacing:.3px; }
-  header.site nav a { margin-left:18px; font-size:14px; color:var(--muted); text-decoration:none; }
-  header.site nav a:hover { color:var(--accent); }
-  h1 { color:#fff; font-size:30px; margin:28px 0 8px; }
-  h2 { color:#fff; font-size:20px; margin:30px 0 8px; }
-  p, li { color:#cdd7e6; }
-  .muted { color:var(--muted); }
-  .lede { font-size:18px; color:var(--muted); }
-  .card { background:var(--card); border:1px solid var(--border); border-radius:14px; padding:20px; margin:16px 0; }
-  .card h3 { margin:0 0 4px; color:#fff; font-size:18px; }
-  .pill { display:inline-block; font-size:12px; color:var(--accent); background:rgba(126,184,247,.12); border:1px solid var(--accent); border-radius:999px; padding:2px 10px; }
-  footer { margin-top:48px; padding-top:20px; border-top:1px solid var(--border); font-size:13px; color:var(--muted); }
-  footer a { color:var(--muted); }
-</style>
+<title>Good Steward Apps — playful indie apps with purpose</title>
+<meta name="description" content="Good Steward Apps is an indie app studio building playful, thoughtful apps including ScripturePicture.">
+<link rel="icon" href="assets/good-steward-mark.svg" type="image/svg+xml">
+<link rel="stylesheet" href="assets/site.css">
 </head>
 <body>
-<div class="wrap">
-  <header class="site">
-    <a class="brand" href="./">Good Steward</a>
-    <nav>
-      <a href="./">Home</a>
-      <a href="scripturepicture/privacy.html">Privacy</a>
-      <a href="scripturepicture/support.html">Support</a>
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="brand" href="/" aria-label="Good Steward Apps home"><img src="assets/good-steward-mark.svg" alt=""><span>Good Steward Apps</span></a>
+    <nav class="links" aria-label="Main navigation">
+      <a href="/">Home</a><a href="/scripturepicture/">ScripturePicture</a><a href="/scripturepicture/support.html">Support</a><a href="/scripturepicture/privacy.html">Privacy</a>
     </nav>
-  </header>
-  
-  <h1>Good Steward</h1>
-  <p class="lede">A small Christian app studio, building thoughtful apps to help people
-  engage with Scripture — and steward their time and resources well.</p>
-
-  <h2>Our apps</h2>
-  <div class="card">
-    <span class="pill">🗺️ Coming soon</span>
-    <h3>ScripturePicture</h3>
-    <p>Read a Bible scripture and find its illustrated scene on a hand-drawn map of Israel.
-    A relaxed game of discovery, in eight languages, with hidden surprises to find.</p>
-    <p><a href="scripturepicture/privacy.html">Privacy policy</a> ·
-       <a href="scripturepicture/support.html">Support</a></p>
   </div>
-
-  <h2>Get in touch</h2>
-  <p class="muted">Questions or feedback? Email
-  <a href="mailto:feedback@goodstewardapps.com">feedback@goodstewardapps.com</a>.</p>
-
-  <footer>
-    © Good Steward. A small Christian app studio. ·
-    <a href="scripturepicture/privacy.html">Privacy</a> ·
-    <a href="scripturepicture/support.html">Support</a> ·
-    <a href="mailto:feedback@goodstewardapps.com">feedback@goodstewardapps.com</a>
-  </footer>
-</div>
+</header>
+<main>
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow">🌱 Small studio. Big-hearted apps.</span>
+        <h1>Playful apps, carefully stewarded.</h1>
+        <p>Good Steward Apps is an independent Christian app studio creating warm, thoughtful experiences for families, learners and curious explorers.</p>
+        <div class="cta-row"><a class="button" href="/scripturepicture/">Explore ScripturePicture</a><a class="btn secondary" href="mailto:feedback@goodstewardapps.com">Get in touch</a></div>
+      </div>
+      <div class="hero-card" aria-label="Good Steward Apps logo preview"><img src="assets/good-steward-logo.svg" alt="Good Steward Apps logo"></div>
+    </div>
+  </section>
+  <section class="section">
+    <div class="wrap">
+      <h2>Designed to feel handmade, helpful and hopeful.</h2>
+      <p class="section-lede">The studio style is bright, illustrated and inviting, while the site gives visitors the confidence of a polished indie developer.</p>
+      <div class="cards">
+        <article class="card"><span class="pill">Intentional</span><h3>Built with care</h3><p>Small, focused apps with clear purpose, gentle pacing and privacy-friendly design.</p></article>
+        <article class="card"><span class="pill">Playful</span><h3>Warm illustration</h3><p>A hand-drawn look that suits ScripturePicture and leaves room for future family-friendly apps.</p></article>
+        <article class="card"><span class="pill">Independent</span><h3>Direct feedback</h3><p>Visitors can share suggestions so the app can grow with real user input.</p></article>
+      </div>
+    </div>
+  </section>
+  <section class="section" id="apps">
+    <div class="wrap app-feature">
+      <div class="app-logo"><img src="assets/scripturepicture-logo.png" alt="ScripturePicture logo"></div>
+      <div>
+        <span class="pill">In development</span>
+        <h2>ScripturePicture</h2>
+        <p class="section-lede">Read the scripture, search the illustrated scene and discover the Bible story hidden in the picture.</p>
+        <ul class="feature-list">
+          <li>🗺️ Explore hand-drawn Bible scenes</li>
+          <li>🔎 Find visual clues and hidden surprises</li>
+          <li>🌏 Designed for multiple languages</li>
+        </ul>
+        <a class="button" href="/scripturepicture/">Open the app page</a>
+      </div>
+    </div>
+  </section>
+</main>
+<footer class="footer"><div class="wrap footer-inner"><span>© Good Steward Apps</span><span><a href="/scripturepicture/privacy.html">Privacy</a> · <a href="/scripturepicture/support.html">Support</a> · <a href="mailto:feedback@goodstewardapps.com">feedback@goodstewardapps.com</a></span></div></footer>
 </body>
 </html>
