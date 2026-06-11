@@ -11,7 +11,9 @@
 // (RESEND_API_KEY) — never committed.
 
 const FEEDBACK_TO = 'feedback@goodstewardapps.com';
-const FEEDBACK_FROM = 'ScripturePicture <feedback@goodstewardapps.com>';
+// Send from a distinct address (not the same as the recipient) — self-addressed
+// mail (from == to) is a strong spam signal for Gmail and others.
+const FEEDBACK_FROM = 'ScripturePicture <noreply@goodstewardapps.com>';
 
 export default {
   async fetch(request, env) {
