@@ -17,3 +17,4 @@ a{color:var(--green-deep);font-weight:750;text-decoration:none}a:hover{text-deco
 .dropdown .menu{position:absolute;top:calc(100% + 12px);left:0;min-width:210px;background:#fff;border:3px solid var(--ink);border-radius:18px;box-shadow:6px 6px 0 var(--ink);padding:8px;display:flex;flex-direction:column;gap:2px;z-index:20}
 .dropdown .menu a{padding:10px 12px;border-radius:12px;color:var(--ink-soft);font-weight:800;font-size:.95rem}
 .dropdown .menu a:hover{background:#eaf8ee;color:var(--green-deep);text-decoration:none}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;opacity:0;overflow:hidden}

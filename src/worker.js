@@ -1,0 +1,98 @@
+// Cloudflare Worker sitting in front of the static site.
+//
+// Static assets are matched first (configured in wrangler.jsonc), so this Worker
+// is only invoked for requests that DON'T map to a file in public/ — chiefly the
+// POST /api/feedback endpoint. Everything else is handed back to the static asset
+// handler via the ASSETS binding.
+//
+// The feedback endpoint sends the submission to feedback@goodstewardapps.com via
+// Resend, so the website can email feedback consistently on any device without
+// relying on the visitor's own mail client. The Resend API key is a Worker secret
+// (RESEND_API_KEY) — never committed.
+
+const FEEDBACK_TO = 'feedback@goodstewardapps.com';
+const FEEDBACK_FROM = 'ScripturePicture <feedback@goodstewardapps.com>';
+
+export default {
+  async fetch(request, env) {
+    const url = new URL(request.url);
+    if (url.pathname === '/api/feedback') {
+      return handleFeedback(request, env);
+    }
+    // Not the API route — let the static asset handler serve it (incl. 404s).
+    return env.ASSETS.fetch(request);
+  },
+};
+
+async function handleFeedback(request, env) {
+  if (request.method !== 'POST') {
+    return json({ ok: false, error: 'Method not allowed.' }, 405);
+  }
+
+  let data;
+  try {
+    data = await request.json();
+  } catch {
+    return json({ ok: false, error: 'Invalid request.' }, 400);
+  }
+
+  const name = String(data.name ?? '').trim();
+  const comment = String(data.comment ?? '').trim();
+  const rating = Number.parseInt(data.rating, 10);
+  const honeypot = String(data.company ?? '').trim(); // hidden field; only bots fill it
+
+  // A filled honeypot means a bot — pretend success and send nothing.
+  if (honeypot) return json({ ok: true });
+
+  if (!name || !comment || !(rating >= 1 && rating <= 5)) {
+    return json({ ok: false, error: 'Please add your name, rating and feedback.' }, 422);
+  }
+  if (name.length > 100 || comment.length > 5000) {
+    return json({ ok: false, error: 'That submission is a little too long.' }, 422);
+  }
+
+  if (!env.RESEND_API_KEY) {
+    return json({ ok: false, error: 'Feedback is not configured yet.' }, 500);
+  }
+
+  const text = [
+    'ScripturePicture feedback',
+    '',
+    `Name: ${name}`,
+    `Rating: ${rating} out of 5`,
+    '',
+    'Feedback / suggestion:',
+    comment,
+  ].join('\n');
+
+  let res;
+  try {
+    res = await fetch('https://api.resend.com/emails', {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${env.RESEND_API_KEY}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        from: FEEDBACK_FROM,
+        to: [FEEDBACK_TO],
+        subject: `ScripturePicture feedback - ${rating}/5`,
+        text,
+      }),
+    });
+  } catch {
+    return json({ ok: false, error: 'Could not send right now.' }, 502);
+  }
+
+  if (!res.ok) {
+    return json({ ok: false, error: 'Could not send right now.' }, 502);
+  }
+  return json({ ok: true });
+}
+
+function json(body, status = 200) {
+  return new Response(JSON.stringify(body), {
+    status,
+    headers: { 'Content-Type': 'application/json' },
+  });
+}
