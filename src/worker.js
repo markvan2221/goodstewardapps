@@ -10,6 +10,8 @@
 // relying on the visitor's own mail client. The Resend API key is a Worker secret
 // (RESEND_API_KEY) — never committed.
 
+import { handleLeaderboard } from './leaderboard.js';
+
 const FEEDBACK_TO = 'feedback@goodstewardapps.com';
 // Send from a distinct address (not the same as the recipient) — self-addressed
 // mail (from == to) is a strong spam signal for Gmail and others.
@@ -18,6 +20,9 @@ const FEEDBACK_FROM = 'ScripturePicture <noreply@goodstewardapps.com>';
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
+    if (url.pathname === '/api/leaderboard') {
+      return handleLeaderboard(request, env);
+    }
     if (url.pathname === '/api/feedback') {
       return handleFeedback(request, env);
     }

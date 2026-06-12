@@ -12,5 +12,12 @@
       "store_id": "2e5de317043848cab3df6082273da9c5",
       "secret_name": "RESEND_API_KEY"
     }
+  ],
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "goodstewardapps-leaderboard",
+      "database_id": "REPLACE_WITH_ID_FROM_MARK"
+    }
   ]
 }
