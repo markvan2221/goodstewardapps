@@ -6,7 +6,7 @@
 // console (see README "Leaderboard moderation").
 
 const MAX_SCORE = 50000; // theoretical game max ≈ 39,450 + headroom
-const MAX_FOUND = 110;
+const MAX_FOUND = 115;
 const MAX_BERRIES = 18;
 const MAX_BADGES = 10;
 const COOLDOWN_MS = 60_000;
